@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt" ng-app="MyApp">
+<head>
+  <title>My App</title>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="scripts/socket.min.js"></script>
+  <script src="scripts/controllers/base.controller.js"></script>
+  <script src="scripts/services/user.service.js"></script>
+  <script src="scripts/services/socket.service.js"></script>
+  <script src="scripts/services/message.service.js"></script>
+</head>
+<body ng-controller="BaseCtrl as ba">
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li>
+            <img src="{{ba.user.data.photos[0].value}}" alt="" />
+          </li>
+          <li>
+            <a>You're logged how {{ba.user.data.displayName}} using the {{ba.user.data.provider}}</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/auth/logout">Log out</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <div class="container">
+    <div class="page-header">
+      <h1>My App</h1>
+    </div>
+    <div class="col-sm-3">
+      <form ng-submit="ba.send()">
+        <div class="col-xs-12 col-sm-12 list-group" style="margin-bottom:10px;">
+          <span><small>key enter to send</small></span>
+          <input ng-model="ba.message" type="text" class="form-control" placeholder="Message">
+        </div>
+      </form>
+      <div class="col-xs-12 col-sm-12 list-group pull-left" style="max-height: 300px;overflow-y: auto;">
+        <span><small>choice the receiver</small></span>
+        <a href="#" class="list-group-item" ng-class="{'active' : u == ba.receiver}" ng-repeat="u in ba.user.users"
+          ng-click="ba.selectReceiver(u)">{{u.displayName}}</a>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-9 pull-right well well-lg" style="min-height:200px;max-height:400px;overflow-y: auto;">
+      <ul class="list-group">
+        <div ng-repeat="chat in ba.chat.chats" ng-show="ba.isTheActualChat(chat)">
+          <li class="list-group-item" ng-repeat="m in chat.messages">
+            <strong ng-class="m.name == ba.user.data.displayName ? 'text-success' : 'text-danger'">
+              {{m.name == ba.user.data.displayName ? 'you' : m.name }}
+            </strong>
+            <small>said:</small> {{m.msg}}
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

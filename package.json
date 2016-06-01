@@ -1,0 +1,36 @@
+{
+  "name": "node-js-getting-started",
+  "version": "0.1.5",
+  "description": "A sample Node.js app using Express 4",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^0.7.12",
+    "body-parser": "~1.12.0",
+    "cookie-parser": "^1.4.3",
+    "express": "4.13.3",
+    "express-session": "^1.8.2",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.0.2",
+    "morgan": "^1.6.1",
+    "node-gcm": "^0.9.15",
+    "node-uuid": "^1.4.7",
+    "passport": "^0.2.1",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.6",
+    "stripe": "^4.0.0"
+  },
+  "engines": {
+    "node": "0.12.7"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
