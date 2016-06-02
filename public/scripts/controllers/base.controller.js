@@ -2,9 +2,9 @@
   angular.module('MyApp', ['btford.socket-io'])
   .controller('BaseCtrl', BaseCtrl);
 
-  BaseCtrl.$inject = ['User', 'Message'];
+  BaseCtrl.$inject = ['User', 'Message', '$timeout'];
 
-  function BaseCtrl(User, Message) {
+  function BaseCtrl(User, Message, $timeout) {
     var ba = this;
 
     ba.user = User;
@@ -14,6 +14,17 @@
 
     ba.selectReceiver = function(receiver) {
       ba.receiver = receiver;
+      ba.scrollToLast();
+    }
+
+    ba.scrollToLast = function() {
+      $timeout(function() {
+        console.log("animate");
+        console.log($('#chat-container').height());
+        $('#chats').animate({
+          scrollTop:$('#chat-container').height()
+        }, 300);
+      }, 150);
     }
 
     ba.isTheActualChat = function(chat) {
@@ -24,7 +35,7 @@
         (ba.user.data.id == chat.user2_id && ba.receiver.id == chat.user1_id);
     }
 
-    ba.send = function() {
+    ba.send = function(i) {
       if (!ba.receiver) {
         alert("Select a receiver!")
       } else {
@@ -36,6 +47,8 @@
         Message.send(ba.user.data.id, ba.receiver.id, msg);
         ba.message = "";
       }
+      console.log("animatesend");
+      ba.scrollToLast();
     }
   }
 })()

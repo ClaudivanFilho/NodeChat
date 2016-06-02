@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="scripts/socket.min.js"></script>
@@ -39,7 +40,7 @@
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container">
-    <div class="page-header">
+    <div class="page-header" style="margin-top:0;">
       <h1>My App</h1>
     </div>
     <div class="col-sm-3">
@@ -55,10 +56,10 @@
           ng-click="ba.selectReceiver(u)">{{u.displayName}}</a>
       </div>
     </div>
-    <div class="col-xs-12 col-sm-9 pull-right well well-lg" style="min-height:200px;max-height:400px;overflow-y: auto;">
-      <ul class="list-group">
-        <div ng-repeat="chat in ba.chat.chats" ng-show="ba.isTheActualChat(chat)">
-          <li class="list-group-item" ng-repeat="m in chat.messages">
+    <div class="col-xs-12 col-sm-9 pull-right well well-lg">
+      <ul id="chats" class="list-group" style="min-height:200px;max-height:300px;overflow-y: auto;">
+        <div id="chat-container" ng-repeat="chat in ba.chat.chats" ng-show="ba.isTheActualChat(chat)">
+          <li class="list-group-item" ng-repeat="m in chat.messages" ng-init="$last ? ba.scrollToLast() : null">
             <strong ng-class="m.name == ba.user.data.displayName ? 'text-success' : 'text-danger'">
               {{m.name == ba.user.data.displayName ? 'you' : m.name }}
             </strong>
@@ -67,6 +68,7 @@
         </div>
       </ul>
     </div>
+
   </div>
 </body>
 </html>
