@@ -6,6 +6,6 @@ var passport = require('passport');
 router.get('/auth/facebook', passport.authenticate('facebook'));
 
 router.get('/auth/facebook/callback', passport.authenticate(
-  'facebook', { successRedirect: '/home', failureRedirect: '/login' }));
+  'facebook', { successRedirect: '/', failureRedirect: '/login' }));
 
 module.exports = router;
