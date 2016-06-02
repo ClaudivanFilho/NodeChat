@@ -58,13 +58,15 @@
     </div>
     <div class="col-xs-12 col-sm-9 pull-right well well-lg">
       <ul id="chats" class="list-group" style="min-height:200px;max-height:300px;overflow-y: auto;">
-        <div id="chat-container" ng-repeat="chat in ba.chat.chats" ng-show="ba.isTheActualChat(chat)">
-          <li class="list-group-item" ng-repeat="m in chat.messages" ng-init="$last ? ba.scrollToLast() : null">
-            <strong ng-class="m.name == ba.user.data.displayName ? 'text-success' : 'text-danger'">
-              {{m.name == ba.user.data.displayName ? 'you' : m.name }}
-            </strong>
-            <small>said:</small> {{m.msg}}
-          </li>
+        <div id="chat-container" >
+          <div ng-repeat="chat in ba.chat.chats" ng-show="ba.isTheActualChat(chat)">
+            <li class="list-group-item" ng-repeat="m in chat.messages" ng-init="$last ? ba.scrollToLast() : null">
+              <strong ng-class="m.name == ba.user.data.displayName ? 'text-success' : 'text-danger'">
+                {{m.name == ba.user.data.displayName ? 'you' : m.name }}
+              </strong>
+              <small>said:</small> {{m.msg}}
+            </li>
+          </div>
         </div>
       </ul>
     </div>
