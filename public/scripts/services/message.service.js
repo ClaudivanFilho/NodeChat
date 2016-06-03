@@ -16,6 +16,7 @@
     return service;
 
     function subscribe(id) {
+      console.log("subscribed to chat-" + id);
       socket.on('chat-' + id, function (msg) {
         if (msg.sender == msg.receiver)
           return;
@@ -62,7 +63,6 @@
     function getChats() {
       $http.get('/chats', [])
       .success(function(response) {
-        console.log(response);
         service.chats = response;
       })
       .error(function(data) {

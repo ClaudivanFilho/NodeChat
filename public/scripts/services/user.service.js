@@ -2,9 +2,9 @@
 angular.module('MyApp')
 .factory('User', userService);
 
-userService.$inject = ['$http', 'Message']
+userService.$inject = ['$http', '$rootScope']
 
-function userService($http, Message) {
+function userService($http, $rootScope) {
 
   var service = {}
 
@@ -20,7 +20,7 @@ function userService($http, Message) {
   function get() {
     $http.get('/user', [])
     .success(function(response) {
-      Message.subscribe(response.id);
+      $rootScope.$broadcast('user-loaded', response.id);
       service.data = response;
     })
     .error(function(data) {
@@ -31,7 +31,6 @@ function userService($http, Message) {
   function getAll() {
     $http.get('/users', [])
     .success(function(response) {
-      console.log(response);
       service.users = response;
     })
     .error(function(data) {

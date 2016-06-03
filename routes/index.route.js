@@ -17,7 +17,6 @@ router.get('/', function(req, res, next) {
 router.get('/backdoor', function(req, res, next) {
   User.remove(function() {
     Chat.remove(function(){
-
     });
   });
   return res.send("Database Reseted");
