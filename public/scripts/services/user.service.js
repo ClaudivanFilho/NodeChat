@@ -13,6 +13,8 @@ function userService($http, $rootScope) {
 
   service.get = get;
   service.getAll = getAll;
+  service.edit = edit;
+  service.getUsersInRange = getUsersInRange;
   service.get();
   service.getAll();
   return service;
@@ -21,6 +23,30 @@ function userService($http, $rootScope) {
     $http.get('/user', [])
     .success(function(response) {
       $rootScope.$broadcast('user-loaded', response.id);
+      service.data = response;
+    })
+    .error(function(data) {
+      console.log(data);
+    });
+  }
+
+  function getUsersInRange(km) {
+    var obj = {
+      kilometers : km
+    };
+    $http.get('/users', { params : obj })
+    .success(function(response) {
+      console.log(response);
+      service.users = response;
+    })
+    .error(function(data) {
+      console.log(data);
+    });
+  }
+
+  function edit(data) {
+    $http.put('/user', data)
+    .success(function(response) {
       service.data = response;
     })
     .error(function(data) {

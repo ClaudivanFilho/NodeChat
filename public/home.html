@@ -16,6 +16,7 @@
   <script src="scripts/services/user.service.js"></script>
   <script src="scripts/services/socket.service.js"></script>
   <script src="scripts/services/message.service.js"></script>
+  <script src="scripts/services/geolocation.service.js"></script>
 </head>
 <body ng-controller="BaseCtrl as ba">
   <nav class="navbar navbar-default" role="navigation">
@@ -43,6 +44,32 @@
     <div class="page-header" style="margin-top:-20px;">
       <h3 style="margin-bottom:0px;">Simple Chat</h3>
     </div>
+    <div class="col-sm-12 alert alert-info">
+      <div class="col-sm-6">
+        <form class="form-horizontal" ng-submit="ba.findUsersInRange()">
+          <div class="input-group">
+            <label class="">Distance(km)</label>
+            <input type="text" class="form-control" placeholder="kilometers" ng-model="ba.distance"><br/>
+            <span><small>key enter to search</small></span>
+          </div>
+        </form>
+      </div>
+      <div class="col-sm-6">
+        <p>
+          <strong>Your location =</strong>
+            Latitude : {{ba.location.data.coords.latitude}}
+            Longitude : {{ba.location.data.coords.longitude}}
+        </p>
+        <p>
+          <strong>Precision =</strong> {{ba.location.data.coords.accuracy}} meters
+        </p>
+        <p>
+          <strong>Distance From Last Point =</strong> {{ba.location.distance}} meters
+        </p>
+        <button class="btn btn-info" ng-click="ba.refreshPosition()">Refresh</button>
+      </div>
+    </div>
+
     <div class="col-sm-3">
       <form ng-submit="ba.send()">
         <div class="col-xs-12 col-sm-12 list-group" style="margin-bottom:10px;">

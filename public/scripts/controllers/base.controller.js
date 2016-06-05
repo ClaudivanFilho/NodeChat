@@ -2,19 +2,41 @@
   angular.module('MyApp', ['btford.socket-io'])
   .controller('BaseCtrl', BaseCtrl);
 
-  BaseCtrl.$inject = ['User', 'Message', '$timeout', '$rootScope'];
+  BaseCtrl.$inject = ['User', 'Message', '$timeout', '$rootScope', 'geolocation'];
 
-  function BaseCtrl(User, Message, $timeout, $rootScope) {
+  function BaseCtrl(User, Message, $timeout, $rootScope, geolocation) {
     var ba = this;
 
     ba.user = User;
     ba.chat = Message;
     ba.receiver = null;
     ba.message = "";
+    ba.distance = null;
+    ba.refreshPosition = refreshPosition;
+    ba.findUsersInRange = findUsersInRange;
+    ba.location = geolocation;
+
+    ba.refreshPosition();
 
     $rootScope.$on('user-loaded', function(event, id) {
       Message.subscribe(id);
     });
+
+    function findUsersInRange() {
+      console.log(ba.distance);
+      User.getUsersInRange(ba.distance);
+    }
+
+    function refreshPosition() {
+      geolocation.refreshPosition(function() {
+        var obj = {};
+        obj.location = [
+          ba.location.data.coords.longitude,
+          ba.location.data.coords.latitude
+        ];
+        User.edit(obj);
+      });
+    }
 
     ba.selectReceiver = function(receiver) {
       ba.receiver = receiver;

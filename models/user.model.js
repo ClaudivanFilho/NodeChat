@@ -5,6 +5,10 @@ var userSchema = new Schema({
   id : String,
   provider : String,
   displayName : String,
+  location : {
+    type : [Number], // [longitude, latitude]
+    index : '2dsphere'
+  },
   emails : [
     {
       value : String,

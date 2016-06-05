@@ -1,0 +1,111 @@
+[
+  {
+    "id" : "1000",
+    "provider" : "Mock",
+    "displayName" : "userJP",
+    "location" : [
+      -34.887085, -7.136323
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1001",
+    "provider" : "Mock",
+    "displayName" : "userAreia",
+    "location" : [
+      -35.722046, -6.918247
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1002",
+    "provider" : "Mock",
+    "displayName" : "userPatos",
+    "location" : [
+      -37.348022, -7.032750
+    ],
+    "photos" : [
+    ]
+  },{
+    "id" : "1003",
+    "provider" : "Mock",
+    "displayName" : "userSouza",
+    "location" : [
+      -38.166504, -6.749169
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1004",
+    "provider" : "Mock",
+    "displayName" : "userMossoro",
+    "location" : [
+      -37.337036, -5.235922
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1005",
+    "provider" : "Mock",
+    "displayName" : "userCuité",
+    "location" : [
+      -36.166992, -6.530916
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1006",
+    "provider" : "Mock",
+    "displayName" : "userLagoaSeca",
+    "location" : [
+      -35.859375, -7.174135
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1007",
+    "provider" : "Mock",
+    "displayName" : "userCG-1",
+    "location" : [
+      -35.922546, -7.231188
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1008",
+    "provider" : "Mock",
+    "displayName" : "userCG-2",
+    "location" : [
+      -35.901604, -7.239362
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1009",
+    "provider" : "Mock",
+    "displayName" : "userCG-3",
+    "location" : [
+      -35.886154, -7.238000
+    ],
+    "photos" : [
+    ]
+  },
+  {
+    "id" : "1010",
+    "provider" : "Mock",
+    "displayName" : "userCG-4",
+    "location" : [
+      -35.889587, -7.225653
+    ],
+    "photos" : [
+    ]
+  }
+]
